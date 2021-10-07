@@ -16,3 +16,4 @@ arr1.splice(3,1,"shyam");
 console.log(arr1);
 arr1.splice(2,1,"seema");
 console.log(arr1);
+//commit
