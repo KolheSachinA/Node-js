@@ -20,14 +20,14 @@ class Bike {
     }
     
 }
-const Honda = new Bike(10,2,30);
-console.log(Honda);
-console.log(Honda.applyBreak(10));
-console.log(Honda.speedUp(20));
-console.log(Honda.changeGear(2));
+const honda = new Bike(10,2,30);
+console.log(honda);
+console.log(honda.applyBreak(10));
+console.log(honda.speedUp(20));
+console.log(honda.changeGear(2));
 console.log("-----------------");
-const Bajaj = new Bike(50,4,100)
-console.log(Bajaj.applyBreak(30));
-console.log(Bajaj.speedUp(10));
-console.log(Bajaj.changeGear(3));
+const bajaj = new Bike(50,4,100)
+console.log(bajaj.applyBreak(30));
+console.log(bajaj.speedUp(10));
+console.log(bajaj.changeGear(3));
 console.log("-----------------");

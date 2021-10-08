@@ -21,3 +21,5 @@ const a3 = new Student('Ross','14','ETC','Uk');
 const a4 = new Student('Rachel','15','CIVIL','USA');
 const a5 = new Student('Moses','16','Mech','Germany');
 console.log(a2);
+console.log(typeof a2);
+console.log(typeof Student);
