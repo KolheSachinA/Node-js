@@ -1,3 +1,2 @@
-console.log(a1.applyBreak(10));
-console.log(a1.speedUp(20));
-console.log(a1.changeGear(2));
+var k = parseInt("0x11")
+console.log(k);
