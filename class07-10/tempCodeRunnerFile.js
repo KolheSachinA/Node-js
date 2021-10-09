@@ -1,2 +1,2 @@
-var k = parseInt("0x11")
-console.log(k);
+const honda = new Bike(10,2,30);
+// console.log(honda);

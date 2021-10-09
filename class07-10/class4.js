@@ -1,7 +1,4 @@
 //inheritance.
-let x1 = ('001',0);
-console.log(x1);
-
 class Parent {
     constructor () {
         this.name = 'Raj';
@@ -14,11 +11,15 @@ class Parent {
 }
 
 class Child extends Parent {
-    constructor(gender) {
+    constructor(gender,name) {
         super();
         this.gender = gender;
+       this.name = name;
     }
 }
 
-const childOne = new Child('male');
+const childOne = new Child('female');
 console.log(childOne);
+const childTwo = new Child('Male','kamal')
+console.log(childTwo);
+

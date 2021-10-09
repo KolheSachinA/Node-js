@@ -31,3 +31,4 @@ console.log(bajaj.applyBreak(30));
 console.log(bajaj.speedUp(10));
 console.log(bajaj.changeGear(3));
 console.log("-----------------");
+
