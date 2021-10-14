@@ -5,6 +5,7 @@ const client = new MongoClient(url);
 const dbName = 'schoolDb';
 
 async function main(){
+    
     await client.connect();
     console.log('Connected Successfully!');
     const db = client.db(dbName);
