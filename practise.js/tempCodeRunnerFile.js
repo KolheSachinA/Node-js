@@ -1,2 +1,3 @@
-month.splice(1,1,'March');
-// console.log(month);
+setTimeout(() => {
+        console.log(i);
+    }, 1);

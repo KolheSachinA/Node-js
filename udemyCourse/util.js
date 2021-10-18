@@ -1,0 +1,6 @@
+const name = 'John';
+console.log("Exported!");
+const add = function (a,b)  {
+    return a+b;
+}
+module.exports = add;
