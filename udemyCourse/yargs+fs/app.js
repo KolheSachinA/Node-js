@@ -16,7 +16,7 @@ yargs.command({
             type: 'String'
         }
     },
-    handler: function (argv) {
+    handler(argv) {
         // console.log(`The title is ${argv.title}`);
         // console.log(`The body is ${argv.body}`);
         notes.addNotes(argv.title,argv.body);
@@ -38,9 +38,39 @@ yargs.command({
                 type:'String'
         }
     },
-    handler: function (argv) {
+    handler(argv) {
         //console.log(`${argv.title} will be removed`);
         notes.removeNotes(argv.title)
+        
     }
+}),
+yargs.command({
+        command:'List',
+        describe:'List Of all',
+        builder:{
+            
+
+        },
+        handler(argv){
+            notes.ShowList();
+        }
+}),
+yargs.command({
+    command:'Read',
+    describe:'Read content',
+    builder:{
+            title:{
+                describe:'title',
+                demandOption:true,
+                type:'String' 
+            },
+            body:{
+
+            }
+    },
+    handler(argv){
+        notes.ReadList(argv.title)
+    }
+
 })
 yargs.parse();

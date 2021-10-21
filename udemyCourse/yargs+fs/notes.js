@@ -1,14 +1,14 @@
 const fs = require('fs');
 const chalk = require('chalk');
-const getNotes = function () {
+const getNotes = ()=> {
     return 'Your notes..'
 }
-const addNotes = function (title, body) {
+const addNotes = (title, body)=> {
     const notes = loadNotes();
-    const duplicateNotes = notes.filter(function (note) {
+    const duplicateNotes = notes.filter((note)=>{
         return note.title === title;
     })
-
+    
     if (duplicateNotes.length === 0) {
         notes.push({
             title: title,
@@ -22,11 +22,11 @@ const addNotes = function (title, body) {
     }
 
 }
-const saveNotes = function (notes) {
+const saveNotes = (notes) => {
     const dataJSON = JSON.stringify(notes);
     fs.writeFileSync('notes.json', dataJSON);
 }
-const loadNotes = function () {
+const loadNotes = ()=> {
     try {
         const dataBuffer = fs.readFileSync('notes.json');
         const dataJSON = dataBuffer.toString();
@@ -36,9 +36,9 @@ const loadNotes = function () {
     }
 }
 
-const removeNotes = function (title) {
+const removeNotes =(title)=>{
     const notes = loadNotes();
-    const NonmatchingNote = notes.filter(function (note) {
+    const NonmatchingNote = notes.filter((note)=> {
         return note.title !== title;
     })
 
@@ -59,7 +59,31 @@ const removeNotes = function (title) {
 
     //console.log("Note is removed!");
 }
+
+const ShowList = () =>{
+    const notes = loadNotes()
+    console.log(chalk.green('Your notes are:'))
+    notes.forEach((note) => {
+            console.log(note.title);
+    })
+}
+
+const ReadList =(title)=>{
+    const notes = loadNotes()
+    const matchingLog = notes.find((note)=> note.title === title     
+    )
+    if(matchingLog===undefined){
+        console.log(chalk.red('No note found!'));
+    }
+    else{
+        //console.log(matchingLog);
+        console.log(chalk.green(matchingLog.title));
+        console.log(matchingLog.body);
+    }
+}
 module.exports = {
     removeNotes: removeNotes,
-    addNotes: addNotes
+    addNotes: addNotes,
+    ShowList:ShowList,
+    ReadList:ReadList
 }
