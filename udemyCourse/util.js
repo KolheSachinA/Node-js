@@ -3,4 +3,9 @@ console.log("Exported!");
 const add = function (a,b)  {
     return a+b;
 }
-module.exports = add;
+const sub = (a,b) =>{
+        return a-b;
+}
+module.exports = {add,
+            sub
+}
