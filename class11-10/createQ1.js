@@ -17,9 +17,9 @@ async function main(){
 }
 
 async function createDocument(collection) {
-    const insertResult = await collection.insertOne({name: 'Ross',
-     rollno: 4,
-     div: 'B',
+    const insertResult = await collection.insertOne({name: 'vikram',
+     rollno: 5,
+     div: 'C',
      age :22,
      language: 'Python'});
     console.log('Inserted documents =>', insertResult);
