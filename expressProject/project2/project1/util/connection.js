@@ -2,12 +2,12 @@ const {MongoClient} = require('mongodb');
 
 const url = 'mongodb://localhost:27017';
 const client = new MongoClient(url);
-const dbName = 'schoolDb';
-
+const dbName = 'task-manager';
+console.log('start-1');
 const connection = async () => {
-    
-    await client.connect();
-    console.log('Connected Successfully!');
+     console.log('start!');
+     await client.connect();
+     console.log('Connected Successfully!');
     //const db = client.db(dbName);
     //const collection = db.collection('student2');
 //     //await createDocument(collection);

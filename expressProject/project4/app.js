@@ -6,25 +6,12 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const addRouter = require('./routes/add');
-const subRouter = require('./routes/sub')
-const mulRouter = require('./routes/mul')
-const divRouter = require('./routes/div')
-const home = require('./routes/home')
-const updateRecord = require('./routes/updateRecord')
-const deleteRecord = require('./routes/deleteRecord')
-const addRecord = require('./routes/addRecord')
-const getRecord = require('./routes/getRecord')
-const HomeOne = require('./routes/HomeOne')
-const getRecordOne = require('./routes/getRecordOne')
-const addRecordDb = require('./routes/addRecordDb')
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -34,20 +21,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.get('/add',addRouter);
-app.get('/sub',subRouter)
-app.get('/mul',mulRouter)
-app.get('/div',divRouter)
-app.get('/getRecord',getRecord)
-app.get('/homeOne',HomeOne)
-app.get('/getRecordOne',getRecordOne)
-app.post('/addRecordDb',addRecordDb)
-
-app.post('/home',home)
-app.post('/addRecord',addRecord)
-//app.post('/addRecordDb',addRecordDb)
-app.put('/updateRecord',updateRecord)
-app.delete('/deleteRecord',deleteRecord)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
