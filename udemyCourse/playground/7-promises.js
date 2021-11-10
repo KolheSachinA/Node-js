@@ -1,13 +1,13 @@
 // const doWorkCallback = (callback) =>{
 //     setTimeout(()=>{
-//        // callback(undefined,'this is result')
+//       // callback(undefined,'this is result')//Both will print
 //        callback('this is',undefined)
 //     },3000)
 // }
 
 // doWorkCallback((error,result)=>{
 //     if(error){
-//         return console.log('error');
+//         return console.log('error:'+error);
 //     }
 //     console.log('Success!');
 // })
@@ -16,7 +16,7 @@
 
 const doWorkPromises = new Promise ((resolve,reject)=>{
     setTimeout(()=>{
-        //resolve([1,7,4])
+        resolve([1,7,4])
         reject('error')
     },2000)
 })
