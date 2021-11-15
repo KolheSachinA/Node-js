@@ -1,0 +1,44 @@
+Welcome to page
+
+Welcome to <%= title %>
+
+<br>
+<h3> Mongodb Data</h3>
+<br>
+<style>
+    table,
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+
+<div class="container bg-light text-dark">
+    <table class="table table-striped" >
+        <form action ='welcome' method='get'>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>RolloNO</th>
+                <th>Division</th>
+                <th>Age</th>
+                <th>Language</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%findResult.forEach(function(element) {%>
+            <tr>
+                <td><%=element.name%></td>
+                <td><%=element.rollno%></td>
+                <td><%=element.div%></td>
+                <td><%=element.age%></td>
+                <td><%=element.language%></td>
+            </tr>
+            <%});%>
+            <input type="submit" value='next'>
+        </tbody>
+        </form>
+    </table>
+</div>

@@ -72,7 +72,7 @@ MongoClient.connect(connURL,(error,client)=>{
     //             }).catch((error)=>{
     //                 console.log(error);
     //             })
-    db.collection('universities').aggregate([
+    db.universities.aggregate([
         {
             $match : {
                 country : 'Spain',city : 'Salamanca'
