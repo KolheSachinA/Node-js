@@ -18,8 +18,9 @@ router.get('/addRecord', function(req, res, next) {
         const db = client.db(dbName);
         const collection = db.collection('student2');
         try {
+          const { page = 1,limit = 5} = req.query
           //const insertResult = await collection.insertMany([{ a: 1, name:'Ram', city:'Bangalore'}]);
-          const findResult = await collection.find({}).limit(6).toArray();
+          const findResult = await collection.find({}).limit(limit*1).skip((page-1) *limit).toArray();
           // console.log('Found documents =>', findResult);
           // res.send({length:findResult.length});
           res.render('addRecord', { title: 'Express', findResult });
