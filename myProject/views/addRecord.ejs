@@ -1,13 +1,13 @@
-Welcome to <%= title %>
 
-<br>
-<h3> Mongodb Data</h3>
+
+<h1 style="color: black;"> Mongodb Data</h3>
 <br>
 <style>
     table,
     th,
     td {
-      padding: 10px;
+        background-color:cornsilk;
+      padding: 20px;
       border: 1px solid black;
       border-collapse: collapse;
     }
@@ -15,7 +15,7 @@ Welcome to <%= title %>
 
 <div class="container bg-light text-dark">
     <table class="table table-striped" >
-        <form action ='welcome' method='get'>
+        <form action ="welcome" method='get'>
         <thead>
             <tr>
                 <th>Name</th>
@@ -26,7 +26,7 @@ Welcome to <%= title %>
             </tr>
         </thead>
         <tbody>
-            <%findResult.forEach(function(element) {%>
+            <%details.findResult.forEach(function(element) {%>
             <tr>
                 <td><%=element.name%></td>
                 <td><%=element.rollno%></td>
@@ -35,8 +35,17 @@ Welcome to <%= title %>
                 <td><%=element.language%></td>
             </tr>
             <%});%>
-            <input type="submit" value='next'>
         </tbody>
-        </form>
-    </table>
+    </form>
+</table>
+<br>
+            <% if(details.pageNo < 6) {%>  
+            <a style="margin-left: 50px;" href="http://localhost:3000/addRecord?page=<%=parseInt(details.pageNo)+1%>&limit=<%=details.limitValue%>">NEXT</a>
+            <% } %> 
+            <% if(details.pageNo > 1) {%> 
+            <a style="margin-left: 100px;" href="http://localhost:3000/addRecord?page=<%=parseInt(details.pageNo)-1%>&limit=<%=details.limitValue%>">PREVIOUS</a>
+            <% } %> 
+        
+
 </div>
+

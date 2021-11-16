@@ -9,7 +9,7 @@ router.get('/createJwtToken', function(req, res, next) {
     let tokenGen;
     const secret = 'QWER@#$^';
     //generate token
-    jwt.sign({ user: 'IoneTech' },secret,{ expiresIn: 60000}, function(err, token) { // step -1 creating a token
+    jwt.sign({ user: 'IoneTech' },secret, function(err, token) { // step -1 creating a token
         if (err) {
             console.log(err);
             res.status(500).send(err);
@@ -21,7 +21,7 @@ router.get('/createJwtToken', function(req, res, next) {
             const tokenObj = {
                 code : token
             }
-            res.cookie('jwtToken',tokenObj,{maxAge : 60000}); // step -2 & 3 , creating a cookie an dloading token in cookie
+            res.cookie('jwtToken',tokenObj); // step -2 & 3 , creating a cookie an dloading token in cookie
             res.send('Token Created');
         }
       });

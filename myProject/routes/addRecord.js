@@ -7,8 +7,6 @@ const importAuthFun = require('../utils/verifyAuth');
 /* GET home page. */
 router.get('/addRecord', function(req, res, next) {
   // Database Name
-  const dbName = 'myProject';
-  let clientConn;
   importAuthFun.verifyJwtAuth(req.cookies.jwtToken.code).then((result) => {
     if (result === 'Verified Successfully') {
       const dbName = 'schoolDb';
@@ -18,13 +16,26 @@ router.get('/addRecord', function(req, res, next) {
         const db = client.db(dbName);
         const collection = db.collection('student2');
         try {
-          const { page = 1,limit = 5} = req.query
+          let pageNo;
+          let limitValue;
+          // console.log(req.query.page);
+          if (req.query.page === undefined){
+            pageNo = 1
+            limitValue = 5;
+          } else {
+            pageNo = req.query.page;
+            limitValue = req.query.limit;
+          }
+          
           //const insertResult = await collection.insertMany([{ a: 1, name:'Ram', city:'Bangalore'}]);
-          const findResult = await collection.find({}).limit(limit*1).skip((page-1) *limit).toArray();
+          const findResult = await collection.find({}).limit(limitValue *1).skip((pageNo-1) *limitValue).toArray();
           // console.log('Found documents =>', findResult);
-           res.send({page,
-                    limit,data:findResult});
-          //res.render('addRecord', { title: 'Express', findResult });
+          //  res.send({page,
+          //           limit,data:findResult});
+          const details = {
+            findResult,pageNo,limitValue
+          }
+          res.render('addRecord', { title: 'Express', details });
         } catch(err) {
           console.log(err);
           res.status(500).send(err);
