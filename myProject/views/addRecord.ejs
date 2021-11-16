@@ -1,51 +1,66 @@
+<%- include('./navbar.html') %>
+
+    <h1 style="color: black;"> Mongodb Data</h3>
+        <br>
+        <style>
+            table,
+            th,
+            td {
+                background-color: cornsilk;
+                padding: 20px;
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+
+        <div class="container bg-light text-dark">
+            <table class="table table-striped">
+                <form action="welcome" method='get'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>RolloNO</th>
+                            <th>Division</th>
+                            <th>Age</th>
+                            <th>Language</th>
+                            <th>Delete</th>
+                            <th>Update</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%details.findResult.forEach(function(element) {%>
+                            <tr>
+                                <td>
+                                    <%=element.name%>
+                                </td>
+                                <td>
+                                    <%=element.rollno%>
+                                </td>
+                                <td>
+                                    <%=element.div%>
+                                </td>
+                                <td>
+                                    <%=element.age%>
+                                </td>
+                                <td>
+                                    <%=element.language%>
+                                </td>
+                                <td><a href="#">Delete</td>
+                                <td><a href="#">Update</td>
+                            </tr>
+                            <%});%>
+                    </tbody>
+                </form>
+            </table>
+            <br>
+            <% if(details.pageNo < 6) {%>
+                <a style="margin-left: 50px;"
+                    href="http://localhost:3000/addRecord?page=<%=parseInt(details.pageNo)+1%>&limit=<%=details.limitValue%>">NEXT</a>
+                <% } %>
+                    <% if(details.pageNo> 1) {%>
+                        <a style="margin-left: 100px;"
+                            href="http://localhost:3000/addRecord?page=<%=parseInt(details.pageNo)-1%>&limit=<%=details.limitValue%>">PREVIOUS</a>
+                        <% } %>
 
 
-<h1 style="color: black;"> Mongodb Data</h3>
-<br>
-<style>
-    table,
-    th,
-    td {
-        background-color:cornsilk;
-      padding: 20px;
-      border: 1px solid black;
-      border-collapse: collapse;
-    }
-  </style>
-
-<div class="container bg-light text-dark">
-    <table class="table table-striped" >
-        <form action ="welcome" method='get'>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>RolloNO</th>
-                <th>Division</th>
-                <th>Age</th>
-                <th>Language</th>
-            </tr>
-        </thead>
-        <tbody>
-            <%details.findResult.forEach(function(element) {%>
-            <tr>
-                <td><%=element.name%></td>
-                <td><%=element.rollno%></td>
-                <td><%=element.div%></td>
-                <td><%=element.age%></td>
-                <td><%=element.language%></td>
-            </tr>
-            <%});%>
-        </tbody>
-    </form>
-</table>
-<br>
-            <% if(details.pageNo < 6) {%>  
-            <a style="margin-left: 50px;" href="http://localhost:3000/addRecord?page=<%=parseInt(details.pageNo)+1%>&limit=<%=details.limitValue%>">NEXT</a>
-            <% } %> 
-            <% if(details.pageNo > 1) {%> 
-            <a style="margin-left: 100px;" href="http://localhost:3000/addRecord?page=<%=parseInt(details.pageNo)-1%>&limit=<%=details.limitValue%>">PREVIOUS</a>
-            <% } %> 
-        
-
-</div>
-
+        </div>
