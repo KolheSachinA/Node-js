@@ -22,7 +22,7 @@ router.get('/createJwtToken', function(req, res, next) {
                 code : token
             }
             res.cookie('jwtToken',tokenObj); // step -2 & 3 , creating a cookie an dloading token in cookie
-            res.send('Token Created');
+            res.send('<h2>Token Created</h2>');
         }
       });
 });

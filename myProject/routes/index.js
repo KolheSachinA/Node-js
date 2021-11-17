@@ -5,8 +5,10 @@ const mongoConnection = require('../utils/connection').connectionObject;
 
 /* GET home page. */
 router.get('/',  function(req, res, next) {
-  
-   res.render('index', { title: 'Express',arr : [1,2,3,4,5], obj :{a:'Ram',b:2,c:3} });
-});
+      //  res.send(findResult);
+       res.render('index',{})
+   });
+   
 
+ 
 module.exports = router;

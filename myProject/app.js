@@ -11,6 +11,8 @@ const addRecord = require('./routes/addRecord');
 const createToken = require('./routes/createJwtToken');
 const info = require('./routes/info');
 const welcome = require('./routes/welcome')
+const login = require('./routes/login')
+var authorize = require('./routes/authorize')
 
 var app = express();
 
@@ -30,6 +32,8 @@ app.get('/createJwtToken', createToken);
 app.get('/info', info);
 app.get('/testRoute', info);
 app.get('/welcome',welcome)
+app.get('/login',login)
+app.post('/authorize',authorize)
 // new route
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

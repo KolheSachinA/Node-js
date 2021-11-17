@@ -35,7 +35,7 @@ router.get('/addRecord', function (req, res, next) {
           const details = {
             findResult, pageNo, limitValue
           }
-          res.render('addRecord', { title: 'Express', details });
+          res.render('addRecord', {details});
         } catch (err) {
           console.log(err);
           res.status(500).send(err);
@@ -50,8 +50,6 @@ router.get('/addRecord', function (req, res, next) {
     res.status(401).send('Incorrect Token or missing token');
   })
 });
-
-// res.render('index', { title: 'Express',arr : [1,2,3,4,5], obj :{a:'Ram',b:2,c:3} });
 
 
 module.exports = router;
