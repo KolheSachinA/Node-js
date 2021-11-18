@@ -2,4 +2,35 @@
 <br>
 <h1>INDEX PAGE! </h1>
 <br>
+<!-- A button element with id "theButton" -->
+<!-- <button id="theButton">LOGOUT</button> -->
+
+<!-- A button element that executes "disableButton" function upon clicking -->
+<form action="/logout" method="get">
+<button class="button" id = "theButton" onclick="disableButton()">LOGOUT</button>
+<script>
+function disableButton() {
+  document.getElementById("theButton").disabled = true;
+}
+</script>
+</form>
+
+<style>
+    .button{
+    background-color: #4CAF50; /* Green */
+  border: none;
+ position: absolute;
+ top: 10px;
+ right: 0px;
+  position:right;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  
+  cursor: pointer;
+    }
+</style>
 
