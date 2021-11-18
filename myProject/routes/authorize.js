@@ -13,7 +13,7 @@ router.post('/authorize', function (req, res, next) {
         const db = client.db(dbName);
         const collection = db.collection('credentials');
         const findResult = await collection.findOne({ Username: username, Password: pass })
-
+        console.log(findResult);
         if (findResult === null) {
             res.send('<h1>Check username and password!</h1>')
         } else {

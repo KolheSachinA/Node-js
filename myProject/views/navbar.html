@@ -35,7 +35,17 @@ li a:hover {
   color: #1abc9c;
   font-size: 20px;
 }
-
+li new {
+  text-align: right;
+}
+.log{  
+        width: 300px;  
+        height: 30px;  
+        border: none;  
+        border-radius: 17px;  
+        padding-left: 7px;  
+        color: blue;  
+}
 </style>
 </head>
 <body>
@@ -46,9 +56,13 @@ li a:hover {
 <ul>
   <li><a class="active" href="/">Home</a></li>
   <li><a href="/addRecord">Records</a></li>
-  <li><a href="#about">About</a></li>
-  <li><a href="#">Contact us</a></li>
+  <li><a href="/login">Login</a></li>
+  <li><a class="new" href="/logout">Logout</a></li>
 </ul>
+<br>
+<form action="/logout" method="get">
+<input  type="submit" value="logout">
+</form>
 </body>
 </html>
 

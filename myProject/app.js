@@ -12,7 +12,8 @@ const createToken = require('./routes/createJwtToken');
 const info = require('./routes/info');
 const welcome = require('./routes/welcome')
 const login = require('./routes/login')
-var authorize = require('./routes/authorize')
+const authorize = require('./routes/authorize')
+const logout = require('./routes/logout')
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.get('/info', info);
 app.get('/testRoute', info);
 app.get('/welcome',welcome)
 app.get('/login',login)
+app.get('/logout',logout)
 app.post('/authorize',authorize)
 // new route
 // catch 404 and forward to error handler
