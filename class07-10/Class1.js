@@ -23,4 +23,4 @@ const a5 = new Student('Moses','16','Mech','Germany');
 console.log(a2);
 console.log(typeof a2);
 console.log(typeof Student);
-
+console.log(typeof null);

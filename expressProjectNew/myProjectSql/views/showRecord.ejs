@@ -1,0 +1,57 @@
+<h1 style="color: black;"> Mongodb Data</h3>
+    <br>
+    <style>
+        table,
+        th,
+        td {
+            background-color: cornsilk;
+            padding: 20px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+
+    <div class="container bg-light text-dark">
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>DOB</th>
+                    <th>sex</th>
+                    <th>salary</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% records .forEach(element=> { %>
+                    <tr>
+                        <td>
+                            <%=element.emp_id%>
+                        </td>
+                        <td>
+                            <%=element.first_name%>
+                        </td>
+                        <td>
+                            <%=element.last_name%>
+                        </td>
+                        <td>
+                            <%=element.birth_day%>
+                        </td>
+                        <td>
+                            <%= element.sex %>
+                        </td>
+                        <td>
+                            <%= element.salary %>
+                        </td>
+                        <%});%>
+
+
+            </tbody>
+
+        </table>
+        <br>
+
+    </div>

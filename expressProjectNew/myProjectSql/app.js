@@ -3,19 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const mongoConnection = require('./utils/connection').connectionObject;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const addRecord = require('./routes/addRecord');
-const createToken = require('./routes/createJwtToken');
-const info = require('./routes/info');
-const welcome = require('./routes/welcome')
-const login = require('./routes/login')
-const authorize = require('./routes/authorize')
-const logout = require('./routes/logout')
-const reg_form = require('./routes/reg_form')
-const auth_sign = require('./routes/auth_sign')
+const showRecord = require('./routes/showRecord')
+
 var app = express();
 
 // view engine setup
@@ -27,19 +19,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/', indexRouter);
-app.get('/users', usersRouter);
-app.get('/addRecord', addRecord);
-app.get('/createJwtToken', createToken);
-app.get('/info', info);
-app.get('/testRoute', info);
-app.get('/welcome',welcome)
-app.get('/login',login)
-app.get('/logout',logout)
-app.post('/authorize',authorize)
-app.get('/reg_form',reg_form)
-app.post('/auth_sign',auth_sign)
-// new route
+app.use('/users', usersRouter);
+app.get('/showRecord',showRecord)
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
