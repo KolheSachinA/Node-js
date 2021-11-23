@@ -6,15 +6,6 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const showRecord = require('./routes/showRecord')
-const authorize = require('./routes/authorize')
-const deleteRecord = require('./routes/showRecord')
-const updateRecord = require('./routes/showRecord')
-const update_auth = require('./routes/update_auth');
-const authorizeLogin = require('./routes/authorize');
-const login = require('./routes/login');
-const createToken = require('./routes/createJwtToken')
-
 
 var app = express();
 
@@ -30,16 +21,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.get('/showRecord',showRecord);
-app.get('/addRecord',showRecord);
-app.post('/authorize',authorize);
-app.get('/deleteRecord',deleteRecord);
-app.get('/updateRecord',updateRecord);
-app.post('/update_auth',update_auth);
-app.post('/authorizeLogin',authorizeLogin);
-app.get('/login',login);
-app.get('/createToken',createToken);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

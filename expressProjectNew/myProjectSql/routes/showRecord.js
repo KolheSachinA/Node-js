@@ -1,25 +1,45 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const importAuthFun = require('../util/verifyAuth');
 const mysql = require('mysql')
 const connection = require('../util/connection')
 
 /* GET home page. */
 router.get('/showRecord', function (req, res, next) {
-    connection.query('SELECT * FROM EMPLOYEE', function (error, results, fields) {
+    try {
+    importAuthFun.verifyJwtAuth(req.cookies.jwtToken.code).then((result) => {
+        if (result === 'Verified Successfully') {
+      connection.query('SELECT * FROM EMPLOYEE', function (error, results, fields) {
         if (results) {
             console.log(results.length)
             res.render('showRecord', { records: results })
             //res.send(results)
         }
         else console.log(error);
-        
+    })
+}
+       
     });
+}catch(error){
+    console.log('incorrect token!');
+    res.send('<h3>login please!</h3>')
+}
 
 });
 
 router.get('/addRecord',(req,res,next) =>{
-    res.render('addRecord')
-})
+    try {
+    importAuthFun.verifyJwtAuth(req.cookies.jwtToken.code).then((result) => {
+        if (result === 'Verified Successfully') {
+         res.render('addRecord')
+        }
+    }
+    )}catch(error){
+    console.log('incorrect token!');
+    res.send('<h3>login please!</h3>')
+}
+    })
 
 router.get('/updateRecord',(req,res,next) =>{
     const first = req.query.first_name;
