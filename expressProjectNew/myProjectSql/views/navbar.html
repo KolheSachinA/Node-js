@@ -55,10 +55,52 @@ li a:hover {
   <li><a class="active" href="/">Home</a></li>
   <li><a href="/addRecord">Records</a></li>
   <li><a href="/showRecord">showRecord</a></li>
+  <li><a href="/login">Login</a></li>
 </ul>
 <br>
+<br>
+<!-- <form action="/logout" id="myButton" onClick="return disableMe()" value="OK"  method="get">
+<input  type="submit" value="logout">
+</form> -->
+<!-- <script type="text/javascript">
+  function disableButton(btn) {
+      document.getElementById(btn.id).disabled = true;
+       alert("Button has been disabled.");
+  }
+</script> -->
+<!-- <script type="text/javascript">
+  var clicked = false;
+  function disableMe() {
+      if (document.getElementById) {
+          if (!clicked) {
+              document.getElementById("myButton").value = "thank you";
+              clicked = true;
+              return true;
+          } else {
+              return false;
+          }
+      } else {
+          return true;
+      }
+  }
+</script> -->
+<!-- <button type="button" id="myButton" onClick="return disableMe()" value="OK"> -->
 
 
+  <form action="/logout">
+    <!-- <input type="button" id="btn" value="Button" /> -->
+    <input type="submit" id="btnSubmit" value="Logout" />
+    <script type="text/javascript">
+        window.onbeforeunload = function () {
+            var inputs = document.getElementsByTagName("INPUT");
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].type == "button" || inputs[i].type == "submit") {
+                    inputs[i].disabled = true;
+                }
+            }
+        };
+    </script>
+    </form>
 </body>
 </html>
 
