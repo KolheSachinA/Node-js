@@ -22,11 +22,12 @@
                     <th>DOB</th>
                     <th>sex</th>
                     <th>salary</th>
+                    <th>Delete</th>
                     <th>Update</th>
                 </tr>
             </thead>
             <tbody>
-                <% records .forEach(element=> { %>
+                <%records.forEach(element => { %>
                     <tr>
                         <td>
                             <%=element.emp_id%>
@@ -44,14 +45,15 @@
                             <%= element.sex %>
                         </td>
                         <td>
-                            <%= element.salary %>
+                            <%=element.salary %>
                         </td>
+                        <td><a href="/deleteRecord?emp_id=<%=element.emp_id%>">DELETE</a></td>
+                        <td><a href="/updateRecord?first_name=<%= element.first_name%> &emp_id=<%=element.emp_id%>">UPDATE</a></td>
+
+                        </tr>
+                        
                         <%});%>
-
-
             </tbody>
-
         </table>
         <br>
-
     </div>

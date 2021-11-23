@@ -1,0 +1,67 @@
+<%- include('./navbar.html') %>
+<form method="post" action="/authorize">    
+    <h2>ADD Records!</h2>    
+    <table>    
+        <tr>    
+            <td><label>Agent Code: </label></td>    
+            <td>    
+                <input type="text" name="code"  placeholder="First Name">    
+            </td>    
+        </tr>    
+        <tr>    
+            <td><label>Agent Name: </label></td>    
+            <td>    
+                <input type="text" name="name"  placeholder="Last Name">    
+            </td>    
+        </tr>    
+        <tr>    
+            <td><label>Working area: </label></td>    
+            <td>    
+                <input type="textarea" size="50"  name="area" placeholder="Address">    
+            </td>    
+        </tr>    
+        <tr>    
+            <td><label>Commission: </label></td>    
+            <td>    
+                <input type="number" name="commission">  
+        
+            </td>    
+        </tr>    
+        <!-- <tr>    
+            <td><label>Email Id: </label></td>    
+            <td>    
+                <input type="text" name="email" id="email"  placeholder="example@gmail.com">    
+            </td>    
+        </tr>     -->
+        <tr>    
+            <td><label>Mobile: </label></td>    
+            <td>    
+                <input type="number" name="mobile"  size=10>    
+            </td>    
+        </tr>    
+        <tr>    
+        <td><label>Country: </label></td>    
+            <td>    
+               <input type = 'text' name='country'>
+            </td>    
+        </tr>    
+        <!-- <tr>    
+            <td><label>Password: </label></td>    
+            <td>    
+                <input type="text" name="psw1" id="psw1" > 
+            </td>    
+        </tr>    
+        <tr>    
+            <td><label>Retype Password: </label></td>    
+            <td>    
+                <input type="text" name="psw2" id="psw2" >    
+            </td>    
+        </tr>     -->
+        <tr>    
+            <td>    
+                <input type="submit" name="submit" value="Submit">    
+                <input type="reset" name="reset" value="Reset">    
+            </td>    
+        </tr>             
+    </table>    
+</form>    
