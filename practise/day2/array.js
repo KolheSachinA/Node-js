@@ -25,5 +25,3 @@ const calcTip= function (bill){
     const tip = bill >= 50 && bill <= 350 ? bill * 0.15 : bill * 0.20
     return tip;
 }
-const tips = [calcTip(bill[0]),calcTip(bill[1]),calcTip(bill[2])]
-console.log(bill,tips);
