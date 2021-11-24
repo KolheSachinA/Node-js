@@ -10,10 +10,25 @@ router.get('/showRecord', function (req, res, next) {
     try {
     importAuthFun.verifyJwtAuth(req.cookies.jwtToken.code).then((result) => {
         if (result === 'Verified Successfully') {
-      connection.query('SELECT * FROM EMPLOYEE', function (error, results, fields) {
+            let pageNo;
+            let limitvalue;
+             if(req.query.page === undefined){
+                 pageNo = 1;
+                 limitvalue = 2;
+                 console.log(pageNo);
+                 console.log(limitvalue);
+    
+             }else {
+                 pageNo = req.query.page;
+                 limitvalue = req.query.limit;
+                 console.log(limitvalue);
+                 console.log(pageNo);
+             }
+      connection.query(`SELECT * FROM EMPLOYEE LIMIT ${(pageNo-1)*limitvalue} ,${limitvalue*1}`, function (error, results, fields) {
         if (results) {
             console.log(results.length)
-            res.render('showRecord', { records: results })
+            //const details = {pageNo,limitValue}
+            res.render('showRecord', {records : results,pageNo,limitvalue});
             //res.send(results)
         }
         else console.log(error);
@@ -61,7 +76,8 @@ router.get('/deleteRecord',(req,res,next) =>{
     if(error){
         return console.log(error);
     }
-   res.send('<h1>Data Deleted successfully!</h1>')
+     res.send('<h1>Data Deleted successfully!</h1>')
+   //res.render('showRecord');
    //res.send('Data deleted!')
 })
 })

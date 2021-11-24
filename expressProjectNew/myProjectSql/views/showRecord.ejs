@@ -1,3 +1,4 @@
+<%- include('./navbar.html') %>
 <h1 style="color: black;"> Mongodb Data</h3>
     <br>
     <style>
@@ -56,4 +57,13 @@
             </tbody>
         </table>
         <br>
+        <% if(pageNo < 6) {%>
+            <a style="margin-left: 50px;"
+                href="http://localhost:5000/showRecord?page=<%=parseInt(pageNo)+1%>&limit=<%=limitvalue%>">NEXT</a>
+                <% } %>
+              
+                <% if(pageNo> 1) {%>
+                    <a style="margin-left: 100px;"
+                        href="http://localhost:5000/showRecord?page=<%=parseInt(pageNo)-1%>&limit=<%=limitvalue%>">PREVIOUS</a>
+                        <% } %>
     </div>
