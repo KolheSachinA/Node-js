@@ -1,23 +1,23 @@
 <html>
-<head>
-        <%- include('./navbar.html') %>
-		<link rel="stylesheet" type="text/css" href="style/register.css">
+  <head>
+    <%- include('./navbar.html') %>
+    <link rel="stylesheet" type="text/css" href="style/register.css" />
 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Update</title>
-</head>
-<body>
-		<h2>UpdateRegistration</h2>
-		 <form  action="/update_auth" method="post">
-       <div class="container">
-      <label for="FirstName"><b>FirstName</b></label>
-      <input type="text"  name="first_name" value=<%=first %> >
-      
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <title>Update</title>
+  </head>
+  <body>
+    <h2>UpdateRegistration</h2>
+    <form action="/update_auth" method="post">
+      <div class="container">
+        <label for="FirstName"><b>FirstName</b></label>
+        <input type="text" name="first_name" value="<%" ="first" % /> >
+
         <label for="EMP_ID"><b>Employee Id</b></label>
-      <input type="text"  name="emp_id"  value= <%=emp_id %> readonly>
-      
-      <input type="submit" value="save">
+        <input type="text" name="emp_id" value="<%" ="emp_id" % /> readonly>
+
+        <input type="submit" value="save" />
       </div>
-      </form>
-</body>
+    </form>
+  </body>
 </html>

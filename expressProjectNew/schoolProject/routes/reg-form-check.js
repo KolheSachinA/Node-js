@@ -20,7 +20,9 @@ router.post('/reg-form-check',(req,res,next) =>{
 
     //insert into db:
     try {
-    connection.query(`INSERT INTO studentdata VALUES ('${stId}','${studClass}','${section}','${fname}', '${lname}', '${email}','${gender}','${income}','${value}','${age}','${bio}','${date}','${password}')`,(error,results)=>{
+    connection.query(`INSERT INTO studentdata (class, section,fname,lname,email,gender,incomeSource,value,age,bio,DateOfAddmission,password )
+    VALUES
+    ('${studClass}' , '${section}' ,'${fname}' ,'${lname}','${email}','${gender}','${income}',${value},${age},'${bio}','${date}','${password}')`,(error,results)=>{
         if(error){
             return res.send(error)
         }
