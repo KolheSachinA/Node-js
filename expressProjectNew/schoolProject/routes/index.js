@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 const connection = require("../util/connection");
+const jwt = require("jsonwebtoken");
+const importAuthFun = require("../util/verifyAuth");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -10,5 +12,17 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
 
-router.get("/record", (req, res, next) => {});
+router.get("/home", (req, res, next) => {
+  try {
+  importAuthFun.verifyJwtAuth(req.cookies.jwtToken.code).then((result) => {
+    if (result === 'Verified Successfully') {
+      res.render('home')
+    }else {
+      res.send('check username and password!')
+    }
+  })
+}catch(e){
+      res.send('check username and password!')
+}
+});
 module.exports = router;

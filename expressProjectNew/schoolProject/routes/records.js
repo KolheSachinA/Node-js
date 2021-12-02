@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const connection = require("../util/connection");
+const jwt = require("jsonwebtoken");
+const importAuthFun = require("../util/verifyAuth");
 
 router.get("/showRecord", (req, res, next) => {
   try {
-    //importAuthFun.verifyJwtAuth(req.cookies.jwtToken.code).then((result) => {
-    //if (result === "Verified Successfully") {
+    // importAuthFun.verifyJwtAuth(req.cookies.jwtToken.code).then((result) => {
+    // if (result === "Verified Successfully") {
     let pageNo;
     let limitvalue;
     if (req.query.page === undefined) {
@@ -86,6 +88,16 @@ router.get("/deleteRecord", (req, res, next) => {
       //res.send('Data deleted!')
     }
   );
+});
+
+router.get("/studentData", (req, res, next) => {
+ 
+   importAuthFun.verifyJwtAuth(req.cookies.jwtToken.code).then((result) => {
+    if (result === "Verified Successfully") {
+      res.render('studentData');
+    }
+   })
+   
 });
 
 module.exports = router;

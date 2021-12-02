@@ -82,4 +82,20 @@ router.get('/deleteRecord',(req,res,next) =>{
 })
 })
 
+router.get('/studentData',(req,res,next) =>{
+    
+    const emp = req.query.emp_id
+    console.log(emp);
+    connection.query(`DELETE FROM employee WHERE emp_id=${emp}`,(error)=>{
+     if(error){
+         return console.log(error);
+     }
+      res.send('<h1>Data Deleted successfully!</h1>')
+    //res.render('showRecord');
+    //res.send('Data deleted!')
+ })
+ })
+
+
+
 module.exports = router;

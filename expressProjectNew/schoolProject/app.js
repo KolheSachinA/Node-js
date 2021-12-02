@@ -13,6 +13,9 @@ const records = require("./routes/records");
 const update_auth = require("./routes/update_auth");
 const adminlogin = require("./routes/adminlogin");
 const authorizeLogin = require("./routes/checkValidate");
+const createJwtToken = require("./routes/createJwtToken");
+const home = require('./routes/index');
+const announcement = require('./routes/Announcement');
 
 var app = express();
 
@@ -34,10 +37,14 @@ app.get("/showRecord", records);
 app.get("/deleteRecord", records);
 app.get("/updateRecord", records);
 app.get("/adminlogin", adminlogin);
+app.get('/home',home);
+app.get('/studentData',records)
+app.get('/announcement',announcement)
 app.post("/update_auth", update_auth);
 app.post("/checkValidate", checkValidate);
 app.post("/reg-form-check", regFormCheck);
 app.post("/authorizeLogin", authorizeLogin);
+app.get("/createJwtToken", createJwtToken);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
