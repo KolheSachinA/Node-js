@@ -5,9 +5,6 @@ const jwt = require("jsonwebtoken");
 const importAuthFun = require("../util/verifyAuth");
 
 router.get("/showRecord", (req, res, next) => {
-  try {
-    // importAuthFun.verifyJwtAuth(req.cookies.jwtToken.code).then((result) => {
-    // if (result === "Verified Successfully") {
     let pageNo;
     let limitvalue;
     if (req.query.page === undefined) {
@@ -21,27 +18,20 @@ router.get("/showRecord", (req, res, next) => {
       console.log(limitvalue);
       console.log(pageNo);
     }
-    connection.query(
-      `SELECT * FROM studentData LIMIT ${(pageNo - 1) * limitvalue} ,${
-        limitvalue * 1
-      }`,
+    connection.query(`SELECT * FROM studentData LIMIT ${(pageNo - 1) * limitvalue} ,${
+        limitvalue * 1 }`,
       function (error, results, fields) {
-        if (results) {
-          console.log(results.length);
-          //const details = {pageNo,limitValue}
+        if (error) {
+          console.log(errror);
+          return;
+        }else{
           res.render("showRecord", {
             records: results,
             pageNo,
             limitvalue,
-          });
-          //res.send(results)
-        } else console.log(error);
-      }
-    );
-  } catch (error) {
-    console.log("incorrect token!");
-    res.send("<h3>login please!</h3>");
-  }
+          })
+        }
+    })
 });
 
 // router.get("/addRecord", (req, res, next) => {

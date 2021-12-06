@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const connection = require("../util/connection");
+const moment = require('moment');
 
 router.post("/reg-form-check", (req, res, next) => {
   const stId = req.body.stId;
@@ -16,21 +17,9 @@ router.post("/reg-form-check", (req, res, next) => {
   const age = req.body.age;
   const bio = req.body.bio;
   const date = req.body.date;
-  console.log(
-    stId,
-    studClass,
-    section,
-    date,
-    fname,
-    lname,
-    email,
-    password,
-    gender,
-    income,
-    value,
-    age,
-    bio
-  );
+  const dateTimeFormatUpdate = 'YYYY-MM-DD HH:mm:ss';
+  const time = moment.utc().format(dateTimeFormatUpdate);
+
 
   //insert into db:
   try {
@@ -44,11 +33,19 @@ router.post("/reg-form-check", (req, res, next) => {
           connection.query(
             `INSERT INTO studentdata (class, section,fname,lname,email,gender,incomeSource,value,age,bio,DateOfAddmission,password )
              VALUES
-    ('${studClass}' , '${section}' ,'${fname}' ,'${lname}','${email}','${gender}','${income}',${value},${age},'${bio}','${date}','${password}')`,
+              ('${studClass}' , '${section}' ,'${fname}' ,'${lname}','${email}','${gender}','${income}',${value},${age},'${bio}','${date}','${password}')`,
             (error, results) => {
               if (error) {
                 return res.send(error);
+          
               }
+
+              connection.query(`insert into attendance values ('${email}','${time}',0,'{dates:[]}')`,(error,result)=>{
+                if(error) return console.log(error);
+                  
+                  console.log('result of attendance:',result);
+        
+              })
               //res.send('welcome')
               connection.query(
                 `select * from studentdata where email = '${email}'`,

@@ -16,7 +16,12 @@ router.get("/home", (req, res, next) => {
   try {
   importAuthFun.verifyJwtAuth(req.cookies.jwtToken.code).then((result) => {
     if (result === 'Verified Successfully') {
-      res.render('home')
+      connection.query('select * from updates',(error,result)=>{
+          if(error) return console.log(error);
+          console.log(result);
+          res.render('home',{record:result});
+        })
+     // res.render('home')
     }else {
       res.send('check username and password!')
     }

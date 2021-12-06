@@ -1,1 +1,15 @@
 <h1>Welcome home!</h1>
+
+<marquee bgcolor="red" width="100%" direction="left" height="20px">
+    <span>
+        <% record.forEach(element=> { %> **
+            <%= element.msg%>
+                <%});%>
+    </span>
+</marquee>
+<style>
+    marquee {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>

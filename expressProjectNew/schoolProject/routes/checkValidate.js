@@ -30,6 +30,7 @@ router.post("/checkValidate", function (req, res, next) {
                 `select * from studentdata where email = '${email}'`,
                 (error, result) => {
                   if (error) console.log("Unable to find results!");
+                  console.log(result);
                   res.render("studentData", { result });
                   // res.render("welcome");
                 }

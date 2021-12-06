@@ -16,6 +16,7 @@ const authorizeLogin = require("./routes/checkValidate");
 const createJwtToken = require("./routes/createJwtToken");
 const home = require('./routes/index');
 const announcement = require('./routes/Announcement');
+const attendance = require('./routes/Attendance');
 
 var app = express();
 
@@ -45,6 +46,9 @@ app.post("/checkValidate", checkValidate);
 app.post("/reg-form-check", regFormCheck);
 app.post("/authorizeLogin", authorizeLogin);
 app.get("/createJwtToken", createJwtToken);
+app.post('/announcement',crudOp)
+app.get('/attendance',attendance);
+app.post('/attendance',attendance);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
