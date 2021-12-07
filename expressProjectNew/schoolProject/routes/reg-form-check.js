@@ -37,14 +37,16 @@ router.post("/reg-form-check", (req, res, next) => {
             (error, results) => {
               if (error) {
                 return res.send(error);
-          
-              }
 
-              connection.query(`insert into attendance values ('${email}','${time}',0,'{dates:[]}')`,(error,result)=>{
-                if(error) return console.log(error);
-                  
-                  console.log('result of attendance:',result);
-        
+              }
+              const datesObj = {
+                dates: []
+              }
+              connection.query(`insert into attendance values ('${email}','${time}',0,'${JSON.stringify(datesObj)}')`, (error, result) => {
+                if (error) return console.log(error);
+
+                console.log('result of attendance:', result);
+
               })
               //res.send('welcome')
               connection.query(

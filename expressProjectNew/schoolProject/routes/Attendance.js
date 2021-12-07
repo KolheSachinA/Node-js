@@ -6,74 +6,80 @@ const importAuthFun = require("../util/verifyAuth");
 const moment = require('moment');
 
 
-router.get('/attendance',(req,res,next) =>{
-     
+router.get('/attendance', (req, res, next) => {
+
     importAuthFun.verifyJwtAuth(req.cookies.jwtToken.code).then((result) => {
         if (result === 'Verified Successfully') {
             const email = req.cookies.jwtToken.email
             console.log(email);
-            res.render('attendance',{Email:email})
+            res.render('attendance', { Email: email })
         }
     })
-  })
+})
 
-router.post('/attendance',(req,res,next) =>{
-    
+router.post('/attendance', (req, res, next) => {
+
     try {
         importAuthFun.verifyJwtAuth(req.cookies.jwtToken.code).then((result) => {
             if (result === 'Verified Successfully') {
                 const email = req.cookies.jwtToken.email
                 console.log(email);
-                connection.query(`select * from attendance where username = '${email}'`,(error,result) =>{
-                    if(error) return console.log(error);
-                    else{
+                connection.query(`select * from attendance where username = '${email}'`, (error, result) => {
+                    if (error) return console.log(error);
+                    else {
                         console.log('inside query');
                         console.log(result);
                         console.log(result[0].lastUpdatedTime);
-                        
-                        
+
+
                         const dateTimeFormatUpdate = 'YYYY-MM-DD HH:mm:ss';
                         const time = moment.utc().format(dateTimeFormatUpdate);
                         const date = moment(time);
-                        const currentDay   = date.format('D');
-                      
+                        const currentDay = date.format('D');
+                        console.log(currentDay);
 
-                       
-                        
+
+
+
                         const dateFrmTable = moment(result[0].lastUpdatedTime);
-                        const dayFrmTable  = dateFrmTable.format('D');
+                        const dayFrmTable = dateFrmTable.format('D');
                         console.log(dayFrmTable);
-                        if(dayFrmTable < currentDay){
-                            const attendance = (result[0].attendanceCount)+1;
-                            const presentDates = JSON.parse(result[0].presentDates);
+                        if (dayFrmTable < currentDay) {
+                            const attendance = (result[0].attendanceCount) + 1;
+                            console.log(attendance);
+                            console.log('inside if block!');
+                            console.log(result[0].presentDates.dates);
+                            const presentDates = JSON.parse(result[0].presentDates.dates);
+                            console.log(presentDates);
+                            console.log(typeof presentDates);
                             const attendanceArray = presentDates.dates;
-    
+                            console.log(typeof attendanceArray);
+
                             presentDates.dates = attendanceArray.push(time);
-                            
+
                             connection.query(`update  attendance set attendanceCount =
-                            ${attendance} , lastUpdatedTime = ${time} ,presentDates =${
-                                JSON.stringify(presentDates)
-                            } where username = ${email}`,(error,result)=>{
-                                if(error) return console.log(error);
-                                console.log('attendace updated!');
-                                console.log(result);
-                            });
+                            ${attendance} , lastUpdatedTime = '${time}' ,presentDates = '${JSON.stringify(presentDates)
+                                }' where username = '${email}'`, (error, result) => {
+                                    if (error) return console.log(error);
+                                    console.log('attendace updated!');
+                                    console.log(result);
+                                });
 
                         }
-                       
+
                     }
-                    
-                    
+
+
                 })
+            }
+        })
+    } catch (error) {
+        console.log(error);
     }
 })
-}catch(error){
-    console.log(error);
-}
-})
-        
-        
-    
-  
-  
-  module.exports = router;
+
+
+
+
+
+module.exports = router;
