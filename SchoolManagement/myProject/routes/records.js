@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const connection = require("../util/connection");
+const exeQuery = require('../util/exeQuery').exeQuery;
 
-router.get("/showRecord", (req, res, next) => {
+router.get("/showRecord", async (req, res, next) => {
   try {
 
     let pageNo;
@@ -18,39 +19,34 @@ router.get("/showRecord", (req, res, next) => {
       console.log(limitvalue);
       console.log(pageNo);
     }
-    connection.query(
-      `SELECT * FROM studentData LIMIT ${(pageNo - 1) * limitvalue} ,${limitvalue * 1
-      }`,
-      function (error, results, fields) {
-        if (results) {
-          console.log(results.length);
-          res.render("showRecord", {
-            records: results,
-            pageNo,
-            limitvalue,
-          });
-        } else console.log(error);
-      }
-    );
+    const query = `SELECT * FROM studentData LIMIT ${(pageNo - 1) * limitvalue} ,
+                    ${limitvalue * 1}`
+    const result = await exeQuery(query);
+    console.log(results.length);
+    res.render("showRecord", {
+      records: results,
+      pageNo,
+      limitvalue,
+    });
   } catch (error) {
     console.log("incorrect token!");
     res.send("<h3>login please!</h3>");
   }
 });
 
-router.get("/updateRecord", (req, res, next) => {
-  const { fname, studentId } = req.query;
-  console.log(fname, studentId);
-  connection.query(
-    `select * from studentdata where studentId = '${studentId}'`,
-    (error, result) => {
-      if (error) console.log("Unable to find results!");
-      //res.render('studentData', { result })
-      res.render("updateRecord", { fname, studentId, result });
-    }
-  );
+router.get("/updateRecord", async (req, res, next) => {
+  try {
+    const { fname, studentId } = req.query;
+    console.log(fname, studentId);
+    const query = `select * from studentdata where studentId = '${studentId}'`
+    const result = await exeQuery(query);
+    res.render("updateRecord", { fname, studentId, result });
 
-  //res.render("updateRecord", { fname, studentId ,result});
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500).send('Internal Server Error:Update')
+  }
+
 });
 
 router.get("/deleteRecord", (req, res, next) => {

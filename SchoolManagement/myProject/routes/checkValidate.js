@@ -1,8 +1,10 @@
-var express = require('express');
+const express = require('express');
+const router = express.Router();
 const connection = require('../util/connection');
-
+const exeQuery = require('../util/exeQuery').exeQuery;
+const verifyjwt = require('../util/verifyJwtToken');
 const jwt = require('jsonwebtoken')
-var router = express.Router();
+
 
 /* GET home page. */
 router.post('/checkValidate', function (req, res, next) {

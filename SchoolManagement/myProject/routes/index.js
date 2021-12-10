@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const connection = require("../util/connection");
+const exeQuery = require('../util/exeQuery').exeQuery;
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -11,15 +12,15 @@ router.get('/', function (req, res, next) {
 });
 
 router.get("/home", (req, res, next) => {
-  connection.query('select * from updates', (error, result) => {
-    if (error) return console.log(error);
+  try {
+    const query = 'select * from updates';
+    const result = await exeQuery(query);
     console.log(result)
     res.render('home', { result });
-  })
-
-  //res.render('home')
-
-
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500).send('Page not found!')
+  }
 });
 
 
