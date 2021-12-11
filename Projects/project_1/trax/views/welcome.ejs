@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <center>
+        <h1>Welcome</h1>
+    </center>
+</head>
+<hr>
+<hr>
+
+<body>
+
+
+
+    <div>
+        <form id="login" method="post" action="/checkwelcome">
+            <table>
+                <tr>
+                    <td>
+                        <label><b>Start Date:
+                            </b>
+                        </label>
+                        <input type="date" name="start" id="Uname" placeholder="start Date">
+                        <br><br>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label><b>End Date:</b></label>
+                        <input type="date" name="end" id="Pass" placeholder="Password">
+                        <br><br>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label><b>Status: </b></label>
+                        <select name="status">
+                            <option value="select_status">Select Status</option>
+                            <option value="success">Success</option>
+                            <option value="failed">Failed</option>
+                            <option value="processing">Processing</option>
+                        </select>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td><input type="submit" name="log" id="log" value="search"></td>
+                    <br><br>
+                </tr>
+
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+<style>
+    body {
+        background-color: beige;
+        margin-left: 20px;
+    }
+</style>
+
+</html>
