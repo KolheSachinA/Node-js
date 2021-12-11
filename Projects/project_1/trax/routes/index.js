@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 const connection = require('../util/connection');
+const fs = require('fs');
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const nodemailer = require("nodemailer");
+const { parse } = require('json2csv');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -37,11 +41,77 @@ router.post('/checkwelcome', (req, res, next) => {
     const db = client.db(dbName);
     const collection = db.collection('complaints');
     const findResult = await collection.find({
-      startDate: start,
-      status: status, 
-      endDate: end
-    }).toArray();
-    console.log(findResult);
+      $and: [{ startDate: { $gte: start, $lt: end } },
+      { status: status }]
+    }).toArray().then((result) => {
+      if (result.length === 0) {
+        res.send('no records found!')
+      } else {
+        console.log(result);
+        res.send(result)
+        //writing json data into data.json
+        // const resultString = JSON.stringify(result);
+        // fs.writeFileSync('./public/data/input.json', resultString);
+        // console.log('sucess');
+        //const createCsvWriter = csvwriter.createObjectCsvWriter
+
+        //Passing the column names intp the module
+        // const csvWriter = createCsvWriter({
+        //   path: './public/data/input.csv',
+        //   header: [
+        //     // Title of the columns (column_names)
+        //     { id: '_id', title: 'ID' },
+        //     { id: 'startDate', title: 'startDate' },
+        //     { id: 'emailId', title: 'emailId' },
+        //     { id: 'status', title: 'status' },
+        //     { id: 'endDate', title: 'endDate' }
+        //   ]
+        // });
+        // csvWriter.writeRecords(result)
+        //   .then(() => {
+        //     console.log('...Done');
+        //   });
+        const csv = parse(result, ["id", "startDate", "emailId", "status", "endDate"]);
+        const transporter = nodemailer.createTransport({
+          service: "hotmail",
+          port: 587,
+          auth: {
+            user: "sachinkolhe719@outlook.com",
+            pass: "your passwd",
+          },
+        });
+        transporter.sendMail(
+          {
+            from: "sachinkolhe719@outlook.com",
+            to: "sachinkolhe57@gmail.com",
+            subject: "**IMPORTANT**RECORD**",
+            text: "Please check the attachment for your reference! 😊",
+            html: "<b>Ola! Please check the attachment for a surprise! 😊</b>",
+            //here is the magic
+            attachments: [
+              {
+                filename: "input.csv",
+                content: csv,
+              },
+            ],
+          },
+          (err, info) => {
+            if (err) {
+              console.log("Error occurred. " + err.message);
+              return process.exit(1);
+            }
+            console.log("Message sent: %s", info.messageId);
+            // Preview only available when sending through an Ethereal account
+            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+          }
+        );
+
+
+      }
+
+    })
+  }).catch((error) => {
+    console.log(error);
   })
 
 })
