@@ -1,12 +1,4 @@
-function add(...args) {
-    let sum = 0;
-  
-    args.forEach(value => {
-      sum += value;
-    });
-  
-    return sum;
-  }
-  
-  console.log(add(2, 3, 4, 5, 6)); //output: 20
-  
+const arr4 = arr2;
+arr4.push(4);
+console.log(arr4);
+console.log(arr2);
